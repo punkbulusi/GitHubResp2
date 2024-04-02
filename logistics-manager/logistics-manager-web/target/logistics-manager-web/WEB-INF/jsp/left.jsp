@@ -42,7 +42,7 @@
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="index.html" target="rightFrame">首页模版</a><i></i></li>
-            <li class="active"><cite></cite><a href="right.html" target="rightFrame">数据列表</a><i></i></li>
+            <li class="active"><cite></cite><a href="${pageContext.request.contextPath}/role/query" target="rightFrame">角色管理</a><i></i></li>
             <li><cite></cite><a href="imgtable.html" target="rightFrame">图片数据表</a><i></i></li>
             <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i></i></li>
             <li><cite></cite><a href="imglist.html" target="rightFrame">图片列表</a><i></i></li>
@@ -57,7 +57,7 @@
 
     <dd>
         <div class="title">
-            <span><img src="images/leftico02.png" /></span>其他设置
+            <span><img src="${pageContext.request.contextPath}/images/leftico02.png" /></span>其他设置
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="#">编辑内容</a><i></i></li>
@@ -67,7 +67,7 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="images/leftico03.png" /></span>编辑器</div>
+    <dd><div class="title"><span><img src="${pageContext.request.contextPath}/images/leftico03.png" /></span>编辑器</div>
         <ul class="menuson">
             <li><cite></cite><a href="#">自定义</a><i></i></li>
             <li><cite></cite><a href="#">常用资料</a><i></i></li>
@@ -77,7 +77,7 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>日期管理</div>
+    <dd><div class="title"><span><img src="${pageContext.request.contextPath}/images/leftico04.png" /></span>日期管理</div>
         <ul class="menuson">
             <li><cite></cite><a href="#">自定义</a><i></i></li>
             <li><cite></cite><a href="#">常用资料</a><i></i></li>

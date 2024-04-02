@@ -5,8 +5,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
 </head>
 
@@ -24,13 +24,13 @@
 
 
     <div class="welinfo">
-        <span><img src="images/sun.png" alt="天气" /></span>
+        <span><img src="${pageContext.request.contextPath}/images/sun.png" alt="天气" /></span>
         <b>Admin早上好，欢迎使用信息管理系统</b>(admin@uimaker.com)
         <a href="#">帐号设置</a>
     </div>
 
     <div class="welinfo">
-        <span><img src="images/time.png" alt="时间" /></span>
+        <span><img src="${pageContext.request.contextPath}/images/time.png" alt="时间" /></span>
         <i>您上次登录的时间：2013-10-09 15:22</i> （不是您登录的？<a href="#">请点这里</a>）
     </div>
 
@@ -38,12 +38,12 @@
 
     <ul class="iconlist">
 
-        <li><img src="images/ico01.png" /><p><a href="#">管理设置</a></p></li>
-        <li><img src="images/ico02.png" /><p><a href="#">发布文章</a></p></li>
-        <li><img src="images/ico03.png" /><p><a href="#">数据统计</a></p></li>
-        <li><img src="images/ico04.png" /><p><a href="#">文件上传</a></p></li>
-        <li><img src="images/ico05.png" /><p><a href="#">目录管理</a></p></li>
-        <li><img src="images/ico06.png" /><p><a href="#">查询</a></p></li>
+        <li><img src="${pageContext.request.contextPath}/images/ico01.png" /><p><a href="#">管理设置</a></p></li>
+        <li><img src="${pageContext.request.contextPath}/images/ico02.png" /><p><a href="#">发布文章</a></p></li>
+        <li><img src="${pageContext.request.contextPath}/images/ico03.png" /><p><a href="#">数据统计</a></p></li>
+        <li><img src="${pageContext.request.contextPath}/images/ico04.png" /><p><a href="#">文件上传</a></p></li>
+        <li><img src="${pageContext.request.contextPath}/images/ico05.png" /><p><a href="#">目录管理</a></p></li>
+        <li><img src="${pageContext.request.contextPath}/images/ico06.png" /><p><a href="#">查询</a></p></li>
 
     </ul>
 
@@ -53,7 +53,7 @@
     <div class="box"></div>
 
     <div class="welinfo">
-        <span><img src="images/dp.png" alt="提醒" /></span>
+        <span><img src="${pageContext.request.contextPath}/images/dp.png" alt="提醒" /></span>
         <b>Uimaker信息管理系统使用指南</b>
     </div>
 

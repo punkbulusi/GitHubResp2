@@ -25,4 +25,9 @@ public class PageController {
         return path;
     }
 
+    @RequestMapping(value = {"/{path}/{path2}"})
+    public String showPage2(@PathVariable String path, @PathVariable String path2){
+        return path+"/"+path2;
+    }
+
 }
