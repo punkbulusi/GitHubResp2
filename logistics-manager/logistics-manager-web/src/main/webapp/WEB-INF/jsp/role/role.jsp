@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %> <!-- 确保EL表达式不被忽略 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -87,7 +88,10 @@
                 <td>${role.roleName}</td>
                 <td>${role.roleDesc}</td>
 
-                <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/role/roleDispatcher?id=${role.roleId}" class="tablelink">更新</a>
+                    <a href="javascript:void(0)" onclick="deleteRole(${role.roleId})" class="tablelink">删除</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -135,6 +139,12 @@
 
 <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');
+    function deleteRole(id){
+        if(window.confirm("是否确定要删除该记录呢?")){
+            window.location.href = "${pageContext.request.contextPath}/role/deleteById?id="+id;
+        }
+
+    };
 </script>
 
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>

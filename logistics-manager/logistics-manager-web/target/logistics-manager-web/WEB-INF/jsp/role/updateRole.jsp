@@ -22,9 +22,10 @@
 <div class="formbody">
     <div class="formtitle"><span>角色信息</span></div>
     <form action="${pageContext.request.contextPath}/role/saveOrUpdate" method="post">
+        <input type="hidden" name="roleId" value="${role.roleId}">
         <ul class="forminfo">
-            <li><label>角色名称</label><input name="roleName" type="text" class="dfinput" /></li>
-            <li><label>角色描述</label><input name="roleDesc" type="text" class="dfinput" /></li>
+            <li><label>角色名称</label><input name="roleName" value="${role.roleName}" type="text" class="dfinput" /></li>
+            <li><label>角色描述</label><input name="roleDesc" value="${role.roleDesc}" type="text" class="dfinput" /></li>
             <li><label>&nbsp;</label><input  type="submit" class="btn" value="确认保存"/></li>
         </ul>
     </form>

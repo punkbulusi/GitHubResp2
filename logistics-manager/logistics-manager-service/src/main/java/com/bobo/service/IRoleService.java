@@ -19,10 +19,10 @@ public interface IRoleService {
 
     /**
      * 删除角色功能
-     * @param role
+     * @param roleId
      * @return
      */
-    Integer deleteRole(Integer role) throws Exception;
+    Integer deleteRole(Integer roleId) throws Exception;
 
     /**
      * 修改角色信息功能
@@ -37,4 +37,11 @@ public interface IRoleService {
      * @return
      */
     List<Role> query(Role role) throws Exception;
+
+    /**
+     * 查询角色根据角色ID
+     * @param roleId
+     * @return
+     */
+    Role queryById(Integer roleId)throws Exception;
 }

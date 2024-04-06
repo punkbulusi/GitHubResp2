@@ -40,7 +40,7 @@
     <span>位置：</span>
     <ul class="placeul">
         <li><a href="#">首页</a></li>
-        <li><a href="#">角色管理</a></li>
+        <li><a href="#">用户管理</a></li>
     </ul>
 </div>
 
@@ -73,20 +73,27 @@
         <thead>
         <tr>
             <th><input name="" type="checkbox" value="" checked="checked"/></th>
-            <th>编号<i class="sort"><img src="${pageContext.request.contextPath}/images/px.gif" /></i></th>
-            <th>角色名称</th>
-            <th>角色描述</th>
+            <th>用户编号<i class="sort"><img src="${pageContext.request.contextPath}/images/px.gif" /></i></th>
+            <th>用户名称</th>
+            <th>真实姓名</th>
+            <th>密码</th>
+            <th>邮箱</th>
+            <th>手机号</th>
 
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${list}" var="role">
+        <c:forEach items="${list}" var="user">
             <tr>
                 <td><input name="" type="checkbox" value="" /></td>
-                <td>${role.roleId}</td>
-                <td>${role.roleName}</td>
-                <td>${role.roleDesc}</td>
+                <td>${user.userId}</td>
+                <td>${user.userName}</td>
+                <td>${user.realName}</td>
+                <td>${user.password}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+
 
                 <td>
                     <a href="${pageContext.request.contextPath}/role/roleDispatcher?id=${role.roleId}" class="tablelink">更新</a>

@@ -31,24 +31,45 @@ public class RoleController  {
     }
 
     /**
-     * 主要用于跳转至添加用户的界面
+     * 主要用于跳转至添加用户的界面,更新用户的界面
      * @param id
      * @return
      */
     @RequestMapping("/roleDispatcher")
-    public String handlePageDispatch(Integer id){
+    public String handlePageDispatch(Integer id,Model model) throws Exception {
+        //这里做一次判断，判断是更新操作还是添加操作
+        if(id != null){
+            Role role = service.queryById(id);
+            model.addAttribute("role",role);
+        }
         return "role/updateRole";
     }
 
     /**
-     * 保存或更新角色信息，但是这里只实现了保存角色信息，并没有开发更新功能
+     * 保存或更新角色信息，根据role的id属性保存或者更新
      * @param role
      * @return
      * @throws Exception
      */
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Role role) throws Exception{
-        service.addRole(role);
+        if(role.getRoleId() != null && role.getRoleId() > 0){
+            service.updateRole(role);
+        }else{
+            service.addRole(role);
+        }
+        return "redirect:/role/query";
+    }
+
+    /**
+     * 根据角色ID删除角色信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/deleteById")
+    public String deleteById(Integer id) throws Exception{
+        service.deleteRole(id);
         return "redirect:/role/query";
     }
 }

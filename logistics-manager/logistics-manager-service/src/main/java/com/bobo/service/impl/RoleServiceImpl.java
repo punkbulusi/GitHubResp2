@@ -20,8 +20,8 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public Integer deleteRole(Integer id) throws Exception {
-        return mapper.deleteByPrimaryKey(id);
+    public Integer deleteRole(Integer roleId) throws Exception {
+        return mapper.deleteByPrimaryKey(roleId);
     }
 
     @Override
@@ -39,5 +39,10 @@ public class RoleServiceImpl implements IRoleService {
     public List<Role> query(Role role) throws Exception {
         RoleExample example = new RoleExample();
         return mapper.selectByExample(example);
+    }
+
+    @Override
+    public Role queryById(Integer roleId) throws Exception{
+        return mapper.selectByPrimaryKey(roleId);
     }
 }
