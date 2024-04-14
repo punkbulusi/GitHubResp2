@@ -31,7 +31,7 @@ public class RoleController  {
     }
 
     /**
-     * 主要用于跳转至添加用户的界面,更新用户的界面
+     * 主要用于跳转至添加角色的界面,更新角色的界面
      * @param id
      * @return
      */

@@ -50,7 +50,7 @@
 
         <ul class="toolbar">
             <li>
-                <a href="${pageContext.request.contextPath}/role/roleDispatcher">
+                <a href="${pageContext.request.contextPath}/user/userDispatcher">
                     <span>
                         <img src="${pageContext.request.contextPath}/images/t01.png" />
                     </span>添加
@@ -73,9 +73,9 @@
         <thead>
         <tr>
             <th><input name="" type="checkbox" value="" checked="checked"/></th>
-            <th>用户编号<i class="sort"><img src="${pageContext.request.contextPath}/images/px.gif" /></i></th>
-            <th>用户名称</th>
-            <th>真实姓名</th>
+            <th>编号<i class="sort"><img src="${pageContext.request.contextPath}/images/px.gif" /></i></th>
+            <th>账号</th>
+            <th>名称</th>
             <th>密码</th>
             <th>邮箱</th>
             <th>手机号</th>
@@ -84,7 +84,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${list}" var="user">
+        <c:forEach items="${pageInfo.list}" var="user">
             <tr>
                 <td><input name="" type="checkbox" value="" /></td>
                 <td>${user.userId}</td>
@@ -96,29 +96,22 @@
 
 
                 <td>
-                    <a href="${pageContext.request.contextPath}/role/roleDispatcher?id=${role.roleId}" class="tablelink">更新</a>
-                    <a href="javascript:void(0)" onclick="deleteRole(${role.roleId})" class="tablelink">删除</a>
+                    <a href="${pageContext.request.contextPath}/user/userDispatcher?userId=${user.userId}" class="tablelink">更新</a>
+                    <a href="javascript:void(0)" onclick="deleteRole(${user.userId})" class="tablelink">删除</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 
-
     <div class="pagin">
-        <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
-        <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
-            <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-        </ul>
+        <jsp:include page="/PageBase.jsp"></jsp:include>
+        <form action="${pageContext.request.contextPath}/user/query" method="get" id="pager" >
+            <input type="hidden" name="pageSize" id="pageSize" value="${pageInfo.pageSize}">
+            <input type="hidden" name="pageNum" id="pageNum" value="${pageInfo.pageNum}">
+        </form>
     </div>
+
 
 
     <div class="tip">
@@ -148,7 +141,7 @@
     $('.tablelist tbody tr:odd').addClass('odd');
     function deleteRole(id){
         if(window.confirm("是否确定要删除该记录呢?")){
-            window.location.href = "${pageContext.request.contextPath}/role/deleteById?id="+id;
+            window.location.href = "${pageContext.request.contextPath}/user/deleteById?id="+id;
         }
 
     };

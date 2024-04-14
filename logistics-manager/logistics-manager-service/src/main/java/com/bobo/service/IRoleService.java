@@ -39,6 +39,13 @@ public interface IRoleService {
     List<Role> query(Role role) throws Exception;
 
     /**
+     * 没有查询条件，全部查询
+     * @return
+     * @throws Exception
+     */
+    List<Role> query() throws Exception;
+
+    /**
      * 查询角色根据角色ID
      * @param roleId
      * @return

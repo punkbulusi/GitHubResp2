@@ -8,15 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     /**
-     * 跳转到主页面的servlet
-     * @return
-     */
-    @RequestMapping(value = {"/","/home"})
-    public String showMain(){
-        return "main";
-    }
-
-    /**
      * 跳转到对应的页面
      * @return
      */

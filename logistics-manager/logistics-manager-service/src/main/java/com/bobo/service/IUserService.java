@@ -1,7 +1,10 @@
 package com.bobo.service;
 
 
+import com.bobo.dto.UserDto;
+import com.bobo.pojo.Role;
 import com.bobo.pojo.User;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -12,14 +15,23 @@ import java.util.List;
  */
 public interface IUserService {
 
-    Integer addUser(User user);
+    Integer addUser(UserDto dto);
 
     Integer deleteUser(User user);
 
-    Integer updateUser(User user);
+    Integer updateUser(UserDto userDto);
 
     List<User> query(User user);
 
+    List<User> query();
+
     User queryUserById(Integer userId);
 
+    List<Integer> queryUserRoleIds(Integer RoleId);
+
+    PageInfo<User> queryByPage(UserDto userDto);
+
+    User login(String userName);
+
+    public List<Role> queryUserHaveRoles(User user);
 }

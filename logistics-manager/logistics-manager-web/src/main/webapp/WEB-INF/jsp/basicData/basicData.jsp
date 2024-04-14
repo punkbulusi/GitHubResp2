@@ -1,0 +1,162 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %> <!-- 确保EL表达式不被忽略 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".click").click(function(){
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function(){
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function(){
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function(){
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
+
+
+</head>
+
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">基础数据管理</a></li>
+    </ul>
+</div>
+
+<div class="rightinfo">
+
+    <div class="tools">
+
+        <ul class="toolbar">
+            <li>
+                <a href="${pageContext.request.contextPath}/basicData/basicDataDispatcher">
+                    <span>
+                        <img src="${pageContext.request.contextPath}/images/t01.png" />
+                    </span>添加
+                </a>
+            </li>
+            <li class="click"><span><img src="${pageContext.request.contextPath}/images/t02.png" /></span>修改</li>
+            <li><span><img src="${pageContext.request.contextPath}/images/t03.png" /></span>删除</li>
+            <li><span><img src="${pageContext.request.contextPath}/images/t04.png" /></span>统计</li>
+        </ul>
+
+
+        <ul class="toolbar1">
+            <li><span><img src="${pageContext.request.contextPath}/images/t05.png" /></span>设置</li>
+        </ul>
+
+    </div>
+
+
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th><input name="" type="checkbox" value="" checked="checked"/></th>
+            <th>编号<i class="sort"><img src="${pageContext.request.contextPath}/images/px.gif" /></i></th>
+            <th>数据名称</th>
+            <th>数据描述</th>
+            <th>父类数据编号</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${basicDatas}" var="basicData">
+            <c:if test="${basicData.parentId == null}">
+                <tr>
+                    <td><input name="" type="checkbox" value="" /></td>
+                    <td>${basicData.baseId}</td>
+                    <td>${basicData.baseName}</td>
+                    <td>${basicData.baseDesc}</td>
+                    <td>${basicData.parentId}</td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/basicData/basicDataDispatcher?baseId=${basicData.baseId}" class="tablelink">更新</a>
+                        <a href="javascript:void(0)" onclick="deleteBasicData(${basicData.baseId})" class="tablelink">删除</a>
+                    </td>
+                </tr>
+            </c:if>
+            <c:forEach items="${basicDatas}" var="basicData2">
+                <c:if test="${basicData2.parentId == basicData.baseId}">
+                    <tr>
+                        <td><input name="" type="checkbox" value="" /></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;${basicData2.baseId}</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;${basicData2.baseName}</td>
+                        <td>${basicData2.baseDesc}</td>
+                        <td>${basicData2.parentId}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/basicData/basicDataDispatcher?baseId=${basicData2.baseId}" class="tablelink">更新</a>
+                            <a href="javascript:void(0)" onclick="deleteBasicData(${basicData2.baseId})" class="tablelink">删除</a>
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </c:forEach>
+        </tbody>
+    </table>
+
+
+    <div class="pagin">
+        <jsp:include page="/PageBase.jsp"></jsp:include>
+        <form action="${pageContext.request.contextPath}/role/query" method="get" id="pager" >
+            <input type="hidden" name="pageSize" id="pageSize" value="${pageInfo.pageSize}">
+            <input type="hidden" name="pageNum" id="pageNum" value="${pageInfo.pageNum}">
+        </form>
+    </div>
+
+
+    <div class="tip">
+        <div class="tiptop"><span>提示信息</span><a></a></div>
+
+        <div class="tipinfo">
+            <span><img src="${pageContext.request.contextPath}/images/ticon.png" /></span>
+            <div class="tipright">
+                <p>是否确认对信息的修改 ？</p>
+                <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+            </div>
+        </div>
+
+        <div class="tipbtn">
+            <input name="" type="button"  class="sure" value="确定" />&nbsp;
+            <input name="" type="button"  class="cancel" value="取消" />
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+    function deleteBasicData(id){
+        if(window.confirm("是否确定要删除该记录呢?")){
+            window.location.href = "${pageContext.request.contextPath}/basicData/deleteById?id="+id;
+        }
+
+    };
+</script>
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>

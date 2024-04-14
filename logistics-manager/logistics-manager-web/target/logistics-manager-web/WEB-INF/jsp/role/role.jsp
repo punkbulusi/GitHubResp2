@@ -99,18 +99,11 @@
 
 
     <div class="pagin">
-        <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
-        <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
-            <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-        </ul>
+        <jsp:include page="/PageBase.jsp"></jsp:include>
+        <form action="${pageContext.request.contextPath}/role/query" method="get" id="pager" >
+            <input type="hidden" name="pageSize" id="pageSize" value="${pageInfo.pageSize}">
+            <input type="hidden" name="pageNum" id="pageNum" value="${pageInfo.pageNum}">
+        </form>
     </div>
 
 

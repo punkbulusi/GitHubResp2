@@ -41,6 +41,17 @@ public class RoleServiceImpl implements IRoleService {
         return mapper.selectByExample(example);
     }
 
+    /**
+     * 没有查询条件，全部查询
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Role> query() throws Exception {
+        RoleExample example = new RoleExample();
+        return mapper.selectByExample(example);
+    }
+
     @Override
     public Role queryById(Integer roleId) throws Exception{
         return mapper.selectByPrimaryKey(roleId);

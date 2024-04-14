@@ -1,7 +1,10 @@
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\OrderDetail.java
+C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\UserRoleKey.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\BasicData.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\Menu.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\Role.java
+C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\dto\BasePage.java
+C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\dto\UserDto.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\CustomerExample.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\BasicDataExample.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\MenuExample.java
@@ -12,3 +15,4 @@ C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\m
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\UserExample.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\OrderDetailExample.java
 C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\RoleExample.java
+C:\Users\Admin\logisticsWorkSpace\logistics-manager\logistics-manager-pojo\src\main\java\com\bobo\pojo\UserRoleExample.java

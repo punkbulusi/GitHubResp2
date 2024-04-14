@@ -39,4 +39,5 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.bobo.mapper" />
     </bean>
+
 </beans>
