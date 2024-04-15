@@ -61,19 +61,21 @@
 <script>
     $(function(){
         $("#userName").blur(function () {
-            var obj = $(this).val().trim() || '';
-            if(obj.length >= 3 && obj.length  <= 10){
-                $.get("${pageContext.request.contextPath}/user/userNameCheck",{userName:obj},function (msg) {
-                    if(msg == "1"){
-                        $("#userNameI").html("<span style='color:green'>账号正常</span>");
-                    }else{
-                        //重复的情况下
-                        $("#userNameI").html("<span style='color:red'> 账号存在，请重新输入 </span>")
-                    }
-                });
-            }else{
-                $("#userNameI").html("<span style='color:red'>账号必须为3-10位</span>")
-            }
+            if(${user.userId == null }){
+                var obj = $(this).val().trim() || '';
+                if(obj.length >= 3 && obj.length  <= 10){
+                    $.get("${pageContext.request.contextPath}/user/userNameCheck",{userName:obj},function (msg) {
+                        if(msg == "1"){
+                            $("#userNameI").html("<span style='color:green'>账号正常</span>");
+                        }else{
+                            //重复的情况下
+                            $("#userNameI").html("<span style='color:red'> 账号存在，请重新输入 </span>")
+                        }
+                    });
+                }else{
+                    $("#userNameI").html("<span style='color:red'>账号必须为3-10位</span>")
+                }
+            };
         });
     });
 </script>

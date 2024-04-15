@@ -43,4 +43,6 @@ public interface IBasicData {
      * @return
      */
     List<BasicData> queryParentId();
+
+    List<BasicData> queryParentName(String parentName);
 }

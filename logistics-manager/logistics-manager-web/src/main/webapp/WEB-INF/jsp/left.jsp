@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -41,16 +42,13 @@
             <span><img src="images/leftico01.png" /></span>管理信息
         </div>
         <ul class="menuson">
-            <li><cite></cite><a href="index.html" target="rightFrame">首页模版</a><i></i></li>
-            <li class="active"><cite></cite><a href="${pageContext.request.contextPath}/role/query" target="rightFrame">角色管理</a><i></i></li>
-            <li><cite></cite><a href="${pageContext.request.contextPath}/user/query" target="rightFrame">用户管理</a><i></i></li>
-            <li><cite></cite><a href="${pageContext.request.contextPath}/basicData/query" target="rightFrame">基础数据管理</a><i></i></li>
-            <li><cite></cite><a href="imglist.html" target="rightFrame">图片列表</a><i></i></li>
-            <li><cite></cite><a href="imglist1.html" target="rightFrame">自定义</a><i></i></li>
-            <li><cite></cite><a href="tools.html" target="rightFrame">常用工具</a><i></i></li>
-            <li><cite></cite><a href="filelist.html" target="rightFrame">信息管理</a><i></i></li>
-            <li><cite></cite><a href="tab.html" target="rightFrame">Tab页</a><i></i></li>
-            <li><cite></cite><a href="error.html" target="rightFrame">404页面</a><i></i></li>
+            <li class="active"><cite></cite><a href="index.html" target="rightFrame">首页模版</a><i></i></li>
+            <shiro:hasAnyRoles name="管理员"><li ><cite></cite><a href="${pageContext.request.contextPath}/role/query" target="rightFrame">角色管理</a><i></i></li></shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="管理员,操作员"><li><cite></cite><a href="${pageContext.request.contextPath}/user/query" target="rightFrame">用户管理</a><i></i></li></shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="管理员,操作员"><li><cite></cite><a href="${pageContext.request.contextPath}/basicData/query" target="rightFrame">基础数据管理</a><i></i></li></shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="管理员,操作员,业务员"><li><cite></cite><a href="${pageContext.request.contextPath}/customer/query" target="rightFrame">管理客户</a><i></i></li></shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="管理员,操作员,业务员"><li><cite></cite><a href="${pageContext.request.contextPath}/customer/addCustomer" target="rightFrame">添加客户</a><i></i></li></shiro:hasAnyRoles>
+
         </ul>
     </dd>
 

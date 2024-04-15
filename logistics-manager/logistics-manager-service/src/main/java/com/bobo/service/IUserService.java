@@ -34,4 +34,6 @@ public interface IUserService {
     User login(String userName);
 
     public List<Role> queryUserHaveRoles(User user);
+
+    public List<User> queryByRoleName(String RoleName);
 }

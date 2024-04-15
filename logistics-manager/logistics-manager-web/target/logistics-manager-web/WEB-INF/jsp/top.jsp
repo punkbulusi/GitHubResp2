@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
@@ -44,7 +45,7 @@
     </ul>
 
     <div class="user">
-        <span>admin</span>
+        <span><shiro:principal property="realName"/></span>
         <i>消息</i>
         <b>5</b>
     </div>

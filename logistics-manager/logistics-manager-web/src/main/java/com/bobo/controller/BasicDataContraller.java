@@ -2,6 +2,8 @@ package com.bobo.controller;
 
 import com.bobo.pojo.BasicData;
 import com.bobo.service.IBasicData;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ public class BasicDataContraller {
      * @param model
      * @return
      */
+    @RequiresRoles(value = {"管理员","操作员"},logical = Logical.OR)
     @RequestMapping("/query")
     public String query(Model model){
         List<BasicData> query = basicDataService.query(new BasicData());
@@ -32,6 +35,7 @@ public class BasicDataContraller {
      * 不管更新或者修改都要查询父类ID有什么，或者当前的父类ID是多少
      * @return
      */
+    @RequiresRoles(value = {"管理员","操作员"},logical = Logical.OR)
     @RequestMapping("/basicDataDispatcher")
     public String basicDataDispatcher(Integer baseId,Model model){
         if(baseId != null){ //不等于null的时候为更新,查询出对应的数据内容返回
@@ -55,6 +59,7 @@ public class BasicDataContraller {
      * @param basicData
      * @return
      */
+    @RequiresRoles(value = {"管理员","操作员"},logical = Logical.OR)
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(BasicData basicData){
         if(basicData != null && basicData.getBaseId() != null){
@@ -64,6 +69,7 @@ public class BasicDataContraller {
         }
         return "redirect:/basicData/query";
     }
+    @RequiresRoles(value = {"管理员","操作员"},logical = Logical.OR)
     @RequestMapping("/deleteById")
     public String deleteById(Integer id){
         if(id != null){

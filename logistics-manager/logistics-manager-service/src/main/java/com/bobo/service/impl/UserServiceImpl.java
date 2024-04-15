@@ -1,5 +1,6 @@
 package com.bobo.service.impl;
 
+import com.bobo.common.constant;
 import com.bobo.dto.UserDto;
 import com.bobo.mapper.RoleMapper;
 import com.bobo.mapper.UserMapper;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements IUserService {
     @Autowired
-    UserMapper mapper;
+    UserMapper userMapper;
     @Autowired
     UserRoleMapper userRoleMapper;
     @Autowired
@@ -47,7 +48,7 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(passwordHash.toString());
         user.setU1(salt);
         //将用户信息存入数据库
-        int i = mapper.insertSelective(user);
+        int i = userMapper.insertSelective(user);
         //这里将角色ID和当前用户ID插入角色用户表
         for(Integer roleId:dto.getRoleIds()){
             UserRoleKey userRoleKey = new UserRoleKey();
@@ -60,7 +61,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Integer deleteUser(User user) {
-        return mapper.deleteByPrimaryKey(user.getUserId());
+        return userMapper.deleteByPrimaryKey(user.getUserId());
     }
 
     /**
@@ -74,7 +75,7 @@ public class UserServiceImpl implements IUserService {
         //更新用户表
         User user = userDto.getUser();
         Integer userId = user.getUserId();
-        mapper.updateByPrimaryKeySelective(user);
+        userMapper.updateByPrimaryKeySelective(user);
         //判断是否需要修改角色信息
         if(userDto.getRoleIds() != null && userDto.getRoleIds().size() > 0) {
             //删除当前用户ID相关的userRole关系数据
@@ -110,7 +111,7 @@ public class UserServiceImpl implements IUserService {
         }
         //这里是确认用户U2属性，确认是否被删除
         userExample.createCriteria().andU2NotEqualTo("1");
-        return mapper.selectByExample(userExample);
+        return userMapper.selectByExample(userExample);
     }
 
     /**
@@ -122,12 +123,12 @@ public class UserServiceImpl implements IUserService {
     public List<User> query() {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andU2NotEqualTo("1");
-        return mapper.selectByExample(userExample);
+        return userMapper.selectByExample(userExample);
     }
 
     @Override
     public User queryUserById(Integer userId) {
-        return mapper.selectByPrimaryKey(userId);
+        return userMapper.selectByPrimaryKey(userId);
     }
 
     /**
@@ -172,7 +173,7 @@ public class UserServiceImpl implements IUserService {
     public User login(String userName) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(userName);
-        List<User> users = mapper.selectByExample(userExample);
+        List<User> users = userMapper.selectByExample(userExample);
         if(users != null && users.size() ==1){
             return users.get(0);
         }else{
@@ -198,6 +199,42 @@ public class UserServiceImpl implements IUserService {
                 roleList.add(role);
             }
             return roleList;
+        }
+        return null;
+    }
+
+    /**
+     * 查询用户中对应角色的用户
+     * @return 查询成功返回所有具有对应角色的用户信息，失败返回null
+     * 先查询对应角色的角色ID
+     * 用对应的角色ID查询对应的用户ID
+     * 查询出所有用户ID的用户后返回
+     */
+    @Override
+    public List<User> queryByRoleName(String RoleName) {
+        //先查询对应角色的角色ID
+        RoleExample roleExample = new RoleExample();
+        roleExample.createCriteria().andRoleNameEqualTo(constant.ROLE_SALEMAN);
+        List<Role> roles = roleMapper.selectByExample(roleExample);
+        if(roles != null && roles.size() == 1){
+            Role role = roles.get(0);
+            Integer roleId = role.getRoleId();
+            //用对应的角色ID查询对应的用户ID
+            UserRoleExample userRoleExample = new UserRoleExample();
+            userRoleExample.createCriteria().andRoleIdEqualTo(roleId);
+            List<UserRoleKey> userRoleKeys = userRoleMapper.selectByExample(userRoleExample);
+            if(userRoleKeys != null && userRoleKeys.size() > 0){
+                List<Integer> userIdS = new ArrayList<>();
+                for(UserRoleKey userRoleKey:userRoleKeys){
+                    Integer userId = userRoleKey.getUserId();
+                    userIdS.add(userId);
+                }
+                //查询出所有用户ID的用户后返回
+                UserExample userExample = new UserExample();
+                userExample.createCriteria().andUserIdIn(userIdS);
+                List<User> users = userMapper.selectByExample(userExample);
+                return users;
+            }
         }
         return null;
     }

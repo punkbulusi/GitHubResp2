@@ -3,6 +3,8 @@ package com.bobo.controller;
 
 import com.bobo.pojo.Role;
 import com.bobo.service.IRoleService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ public class RoleController  {
      * @return 转向role页面
      * @throws Exception
      */
+    @RequiresRoles(value = "管理员",logical = Logical.OR)
     @RequestMapping("/query")
     public String query(Role role, Model model) throws Exception{
         List<Role> list = service.query(role);
@@ -35,6 +38,7 @@ public class RoleController  {
      * @param id
      * @return
      */
+    @RequiresRoles(value = "管理员",logical = Logical.OR)
     @RequestMapping("/roleDispatcher")
     public String handlePageDispatch(Integer id,Model model) throws Exception {
         //这里做一次判断，判断是更新操作还是添加操作
@@ -51,6 +55,7 @@ public class RoleController  {
      * @return
      * @throws Exception
      */
+    @RequiresRoles(value = "管理员",logical = Logical.OR)
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Role role) throws Exception{
         if(role.getRoleId() != null && role.getRoleId() > 0){
@@ -67,6 +72,7 @@ public class RoleController  {
      * @return
      * @throws Exception
      */
+    @RequiresRoles(value = "管理员",logical = Logical.OR)
     @RequestMapping("/deleteById")
     public String deleteById(Integer id) throws Exception{
         service.deleteRole(id);

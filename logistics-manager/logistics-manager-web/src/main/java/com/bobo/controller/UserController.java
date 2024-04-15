@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     IRoleService roleService;
 
-    @RequiresRoles(value = {"admin","root"}, logical = Logical.OR)
+    @RequiresRoles(value = {"管理员","操作员",},logical = Logical.OR)
     @RequestMapping("/query")
     public String userQuery(UserDto userDto, Model model){
         PageInfo<User> pageInfo = userService.queryByPage(userDto);
@@ -42,7 +42,7 @@ public class UserController {
      * @param userId
      * @return
      */
-    @RequiresRoles(value = "admin",logical = Logical.OR)
+    @RequiresRoles(value = {"管理员","操作员",},logical = Logical.OR)
     @RequestMapping("/userDispatcher")
     public String userDispatcher(Integer userId,Model model) throws Exception {
         if(userId != null && userId > 0){
@@ -68,7 +68,7 @@ public class UserController {
      *
      * @return
      */
-    @RequiresRoles(value = "admin",logical = Logical.OR)
+    @RequiresRoles(value = {"管理员","操作员",},logical = Logical.OR)
     @RequestMapping("/userSaveOrUpdate")
     public String userSaveOrUpdate(UserDto dto){
         if(dto.getUser() != null && dto.getUser().getUserId() ==null){
@@ -85,7 +85,7 @@ public class UserController {
      * @param id 要删除的id
      * @return 返回查询页面
      */
-    @RequiresRoles(value = {"admin","root"},logical = Logical.AND)
+    @RequiresRoles(value = {"管理员","操作员",},logical = Logical.OR)
     @RequestMapping("/deleteById")
     public String deleteById(Integer id){
         //根据ID获取user，并将u2位置改为1
@@ -99,6 +99,7 @@ public class UserController {
         return "redirect:/user/query";
     }
 
+    @RequiresRoles(value = {"管理员","操作员",},logical = Logical.OR)
     @RequestMapping("/userNameCheck")
     @ResponseBody
     public String userNameCheck(String userName){

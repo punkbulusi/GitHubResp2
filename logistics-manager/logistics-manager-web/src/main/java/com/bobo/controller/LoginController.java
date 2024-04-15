@@ -17,6 +17,7 @@ public class LoginController {
      * 前端登录的时候验证的servlet
      * @return
      */
+
     @RequestMapping("/login.do")
     public String loginDo(HttpServletRequest request, Model model){
         Object ex = request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
